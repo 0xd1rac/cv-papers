@@ -26,6 +26,8 @@ print(preds.shape) # torch.Size([1, 10])
 ```
 
 ## ViT 
+<img src="images/vit.png" alt="ViT Model" width="500" height="300">
+
 Vision Transformer is an encoder only transformer model adapted for computer vision task. 
 
 Before reading the paper, I went through a few youtube videos and found these to be of a lot of help: 
