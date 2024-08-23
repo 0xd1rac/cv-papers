@@ -1,2 +1,3 @@
 venv
 run.py
+cv_imp/__pycache__/*
