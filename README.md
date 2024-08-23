@@ -5,10 +5,11 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [Resnet](#resnet)
 
 ## Resnet
-The ResNet <a href="https://arxiv.org/abs/1512.03385"> paper </a> introduces the concept of residual learning, where instead of directly learning the desired mapping, the network learns the residual (difference) between the input and the output. This is formalized as $ F(x) = H(x) - x$, $H(x)$ is the desired function and x is the input.
+The ResNet <a href="https://arxiv.org/abs/1512.03385"> paper </a> introduces the concept of residual learning, where instead of directly learning the desired mapping, the network learns the residual (difference) between the input and the output. This is formalized as $F(x) = H(x) - x$, $H(x)$ is the desired function and $x$ is the input.
 
-A residual block consists of a series of convolutional layers with a skip connection (or shortcut) that bypasses these layers and adds the input directly to the output. This helps in addressing the vanishing gradient problem and allows for the training of much deeper networks
-You can use it by importing the `resnet` as shown below
+A residual block consists of a series of convolutional layers with a skip connection (or shortcut) that bypasses these layers and adds the input directly to the output. This helps in addressing the vanishing gradient problem and allows for the training of much deeper networks.
+
+You can use it by importing the `resnet` as shown below:
 
 ```python
 import torch
