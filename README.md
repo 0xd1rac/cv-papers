@@ -6,6 +6,8 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ViT](#vit)
 
 ## Resnet
+<img src="images/resnet.svg" alt="Resnet Blocks" width="100" height="100">
+
 The ResNet <a href="https://arxiv.org/abs/1512.03385"> paper </a> introduces the concept of residual learning, where instead of directly learning the desired mapping, the network learns the residual (difference) between the input and the output. This is formalized as $F(x) = H(x) - x$, $H(x)$ is the desired function and $x$ is the input.
 
 A residual block consists of a series of convolutional layers with a skip connection (or shortcut) that bypasses these layers and adds the input directly to the output. This helps in addressing the vanishing gradient problem and allows for the training of much deeper networks.
