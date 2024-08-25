@@ -114,6 +114,7 @@ class InvertedResidualBlock(nn.Module):
 
 class EfficientNet(nn.Module):
     def __init__(self,
+                 in_channels,
                  version,
                  num_classes
                  ):
@@ -121,7 +122,7 @@ class EfficientNet(nn.Module):
         width_factor, depth_factor, dropout_rate = self.calculate_factors(version)
         last_channels = ceil(1280 * width_factor)
         self.pool = nn.AdaptiveAvgPool2d(1)
-        self.features = self.create_features(width_factor, depth_factor, last_channels)
+        self.features = self.create_features(in_channels,width_factor, depth_factor, last_channels)
         self.classifer = nn.Sequential(
             nn.Dropout(dropout_rate),
             nn.Linear(last_channels, num_classes)
@@ -133,9 +134,9 @@ class EfficientNet(nn.Module):
         width_factor = beta ** phi
         return width_factor, depth_factor, dropout_rate
     
-    def create_features(self, width_factor, depth_factor, last_channels):
+    def create_features(self, in_channels, width_factor, depth_factor, last_channels):
         channels = int(32 * width_factor)
-        features = [CNNBlock(3, channels, 3, stride=2, padding=1)]
+        features = [CNNBlock(in_channels, channels, 3, stride=2, padding=1)]
         in_channels = channels
 
         for expand_ration, channels, repeats, stride, kernel_size in base_model:
@@ -165,3 +166,67 @@ class EfficientNet(nn.Module):
     def forward(self, x):
         x = self.pool(self.features(x))
         return self.classifer(x.view(x.shape[0],-1))
+
+class EfficientNet_B0(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b0"
+        super(EfficientNet_B0, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)
+
+class EfficientNet_B1(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b1"
+        super(EfficientNet_B1, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)
+
+class EfficientNet_B2(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b2"
+        super(EfficientNet_B2, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)
+
+class EfficientNet_B3(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b3"
+        super(EfficientNet_B3, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)
+
+class EfficientNet_B4(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b4"
+        super(EfficientNet_B4, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)
+
+class EfficientNet_B5(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b5"
+        super(EfficientNet_B5, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)
+
+class EfficientNet_B6(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b6"
+        super(EfficientNet_B6, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)
+        
+class EfficientNet_B7(EfficientNet):
+    def __init__(self,
+                 in_channels,
+                 num_classes
+                 ):
+        version = "b7"
+        super(EfficientNet_B7, self).__init__(version=version, in_channels=in_channels, num_classes=num_classes)

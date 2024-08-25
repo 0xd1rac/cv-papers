@@ -5,6 +5,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [Resnet](#resnet)
 - [ViT](#vit)
 - [EfficientNet](#efficientnet)
+- [UNet](#unet)
 
 ## Resnet
 <img src="images/resnet.svg" alt="Resnet Blocks" width="500" height="300">
@@ -74,11 +75,25 @@ You can use it by importing the efficientnet model as shown below:
 
 ```python
 import torch
-from cv_imp.efficient import EfficientNet
+from cv_imp.efficientnet import EfficientNet_B2
 
 img = torch.randn(1, 3, 224, 224)
-version = "b1"
-model = EfficientNet(version=version, num_classes=1000)
+model = EfficientNet_B2(num_classes=1000)
 preds = model(img)
 print(preds.shape) # torch.Size([1, 1000])
+```
+
+## UNet
+```python
+
+import torch
+from cv_imp.unet import UNet
+
+img = torch.rand((1, 1, 160,160))
+model = UNet(1,1)
+preds = model(img)
+print(img.shape)
+print(preds.shape)
+assert img.shape == preds.shape
+
 ```
