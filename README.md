@@ -4,7 +4,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 ## Table of Contents
 - [Resnet](#resnet)
 - [ViT](#vit)
-- [EfficientNet] (#efficientnet)
+- [EfficientNet](#efficientnet)
 
 ## Resnet
 <img src="images/resnet.svg" alt="Resnet Blocks" width="500" height="300">
