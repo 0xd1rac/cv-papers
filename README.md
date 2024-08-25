@@ -4,6 +4,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 ## Table of Contents
 - [Resnet](#resnet)
 - [ViT](#vit)
+- [EfficientNet] (#efficientnet)
 
 ## Resnet
 <img src="images/resnet.svg" alt="Resnet Blocks" width="500" height="300">
@@ -62,7 +63,7 @@ print(preds.shape) # torch.Size([1, 1000])
 
 ```
 
-
+## EfficientNet
 The EfficientNet paper introduces a compound scaling method that uniformly scales all dimensions of depth, width, and resolution using a set of fixed scaling coefficients. EfficientNet models are designed to achieve higher accuracy with fewer parameters and lower computational cost compared to previous architectures.
 
 At the core of EfficientNet is the MBConv block, which includes a series of depthwise separable convolutions combined with squeeze-and-excitation blocks. These blocks are connected via skip connections (similar to ResNet) that help in efficient feature reuse and enable the network to be both deep and lightweight.
@@ -71,8 +72,7 @@ The compound scaling is achieved through three coefficients: depth $(α)$, width
 
 You can use it by importing the efficientnet model as shown below:
 
-```
-python
+```python
 import torch
 from cv_imp.efficient import EfficientNet
 
