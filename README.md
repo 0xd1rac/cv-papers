@@ -6,6 +6,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ViT](#vit)
 - [EfficientNet](#efficientnet)
 - [UNet](#unet)
+- [YOLOv1](#yolov1)
 
 ## Resnet
 <img src="images/resnet.svg" alt="Resnet Blocks" width="500" height="300">
@@ -96,4 +97,15 @@ print(img.shape)
 print(preds.shape)
 assert img.shape == preds.shape
 
+```
+
+## YOLO v1
+```python
+import torch
+from cv_imp.yolo_v1 import Yolo_v1
+
+img = torch.rand((2, 3, 224, 224))
+model = Yolo_v1(split_size=7, num_boxes=2, num_classes=20)
+preds = model(img)
+print(preds.shape) 
 ```
