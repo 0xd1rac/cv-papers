@@ -61,3 +61,24 @@ print(preds.shape) # torch.Size([1, 1000])
 
 
 ```
+
+
+The EfficientNet paper introduces a compound scaling method that uniformly scales all dimensions of depth, width, and resolution using a set of fixed scaling coefficients. EfficientNet models are designed to achieve higher accuracy with fewer parameters and lower computational cost compared to previous architectures.
+
+At the core of EfficientNet is the MBConv block, which includes a series of depthwise separable convolutions combined with squeeze-and-excitation blocks. These blocks are connected via skip connections (similar to ResNet) that help in efficient feature reuse and enable the network to be both deep and lightweight.
+
+The compound scaling is achieved through three coefficients: depth $(α)$, width $(β)$, and resolution $(γ)$, which are systematically scaled according to the desired model size.
+
+You can use it by importing the efficientnet model as shown below:
+
+```
+python
+import torch
+from cv_imp.efficient import EfficientNet
+
+img = torch.randn(1, 3, 224, 224)
+version = "b1"
+model = EfficientNet(version=version, num_classes=1000)
+preds = model(img)
+print(preds.shape) # torch.Size([1, 1000])
+```
