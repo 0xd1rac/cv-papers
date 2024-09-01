@@ -66,11 +66,23 @@ print(preds.shape) # torch.Size([1, 1000])
 ```
 
 ## EfficientNet
-The EfficientNet paper introduces a compound scaling method that uniformly scales all dimensions of depth, width, and resolution using a set of fixed scaling coefficients. EfficientNet models are designed to achieve higher accuracy with fewer parameters and lower computational cost compared to previous architectures.
+The EfficientNet paper introduces a compound scaling method that uniformly scales all dimensions of depth, width, and resolution using a set of fixed scaling coefficients. The compound scaling is achieved through three coefficients: 
 
-At the core of EfficientNet is the MBConv block, which includes a series of depthwise separable convolutions combined with squeeze-and-excitation blocks. These blocks are connected via skip connections (similar to ResNet) that help in efficient feature reuse and enable the network to be both deep and lightweight.
+Depth $(α)$: This parameter scales the number of layers in the network.
+Width $(β)$: This parameter scales the number of channels in each layer.
+Resolution $(γ)$: This parameter scales the input image size.
 
-The compound scaling is achieved through three coefficients: depth $(α)$, width $(β)$, and resolution $(γ)$, which are systematically scaled according to the desired model size.
+These three cofficients were obtained in the paper through a process of grid search and optimization on a baseline model EfficientNet-B0. 
+
+$α$ = 1.2
+$β$ = 1.1 
+$γ$ = 1.15 
+
+The scaling of these dimensions is determined by the following relationships:
+
+
+At the core of EfficientNet is the MBConv block, which utilizes depthwise separable convolutions to reduce computational cost while maintaining performance. These blocks also incorporate squeeze-and-excitation (SE) modules to enhance the network's ability to capture important features by adaptively recalibrating channel-wise feature responses. Additionally, skip connections (similar to those in ResNet) are used to help with feature reuse, making the network both deep and lightweight.
+
 
 You can use it by importing the efficientnet model as shown below:
 
@@ -100,6 +112,9 @@ assert img.shape == preds.shape
 ```
 
 ## YOLO v1
+
+https://www.youtube.com/watch?v=ag3DLKsl2vk&t=296s
+
 ```python
 import torch
 from cv_imp.yolo_v1 import Yolo_v1
@@ -108,4 +123,4 @@ img = torch.rand((2, 3, 224, 224))
 model = Yolo_v1(split_size=7, num_boxes=2, num_classes=20)
 preds = model(img)
 print(preds.shape) 
-```
+```c

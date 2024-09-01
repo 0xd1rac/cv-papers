@@ -55,14 +55,20 @@ class SqueezeExcitation(nn.Module):
     def __init__(self, in_channels, reduced_dim):
         super(SqueezeExcitation, self).__init__()
         self.se = nn.Sequential(
-            nn.AdaptiveAvgPool2d(1),# channel x height x width -> channel x 1 x 1 
+            # (batch_size, channel x height x width) -> (batch_size, channel x 1 x 1)
+            nn.AdaptiveAvgPool2d(1),
+
+            # (batch_size, channel x 1 x 1) -> (batch_size, reduced_dim x 1 x 1)
             nn.Conv2d(in_channels, reduced_dim, 1),
             nn.SiLU(),
+
+            # (batch_size, reduced_dim x 1 x 1) -> (batch_size, channel x 1 x 1)
             nn.Conv2d(reduced_dim, in_channels, 1),
             nn.Sigmoid()
         )
 
     def forward(self, x):
+        # (batch_size, channel x height x width) * (batch_size, channel x 1 x 1) -> element wise multiplication
         return x * self.se(x)
 
 class InvertedResidualBlock(nn.Module):
