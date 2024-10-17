@@ -71,6 +71,23 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] DensePose
 - [ ] TransPose
 
+## Action Recognition
+- [ ] ViViT: A Video Vision Transformer
+- [ ] Two-Stream Convolutional Networks for Action Recognition in Videos
+- [ ] C3D: Learning Spatiotemporal Features with 3D Convolutional Networks
+- [ ] I3D: Quo Vadis, Action Recognition? A New Model and the Kinetics
+- [ ] TSN: Temporal Segment Networks for Action Recognition in Videos
+- [ ] SlowFast Networks for Video Recognition
+- [ ] Non-local Neural Networks
+- [ ] R(2+1)D: A Better Baseline for Video Understanding
+- [ ] Attention Is All You Need for Action Recognition
+- [ ] Action Recognition Using Visual Attention
+- [ ] LRCN: Long-term Recurrent Convolutional Networks for Visual Recognition and Description
+- [ ] Temporal Relational Reasoning in Videos
+- [ ] Video Action Transformer Network
+- [ ] TimeSformer: Is Space-Time Attention All You Need for Video Understanding?
+- [ ] MoViNets: Mobile Video Networks for Efficient Video Recognition
+- [ ] PoseC3D: Video Action Recognition with Pose Estimation
 
 
 ## Table of Contents
