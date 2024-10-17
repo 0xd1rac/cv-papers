@@ -1,6 +1,78 @@
 # cv-papers
 This is my feeble attempt at reading and implementing various computer vision papers. Mostly for educational purposes. 
 
+# To Dos
+## Architecture (CNN) 
+- [ ] AlexNet
+- [ ] VGGNet
+- [ ] ResNet
+- [ ] Inception
+- [ ] DenseNet
+- [ ] MobileNet
+- [ ] SqueezeNet
+- [ ] EfficientNet
+- [ ] NASNet
+- [ ] XCeption
+- [ ] WideResNet
+- [ ] ShuffleNet
+- [ ] ResNeXt
+- [ ] ConvNeXt
+
+## Object Detection
+- [ ] R-CNN
+- [ ] Fast R-CNN
+- [ ] Faster R-CNN
+- [ ] Mask R-CNN
+- [ ] YOLOv1
+- [ ] YOLOv2
+- [ ] YOLOv3
+- [ ] YOLOv4
+- [ ] YOLOv5
+- [ ] YOLOv7
+- [ ] YOLOv8
+- [ ] SSD
+- [ ] FPN
+- [ ] RetinaNet
+- [ ] EfficientDet
+- [ ] CornerNet
+- [ ] DCN
+- [ ] SpineNet
+- [ ] DETR
+- [ ] CenterNet
+- [ ] Dynamic R-CNN
+
+## Segmentation
+- [ ] SAM
+- [ ] SAM 2
+- [ ] SEEM
+- [ ] Mask2Former
+- [ ] CLIPSeg
+- [ ] OmniSeg
+- [ ] Vision Transformers for Dense Prediction
+- [ ] SOLOv2
+- [ ] U-Net
+- [ ] U-Net++
+- [ ] DeepLab
+- [ ] PSPNet
+- [ ] RefineNet
+- [ ] SegNet
+- [ ] Point-level Objectness for One-click Segmentation
+- [ ] HRNet
+
+## Pose Estimation
+- [ ] Convolutional Pose Machines
+- [ ] DeepCut
+- [ ] Stacked Hourglass Networks
+- [ ] PoseNet
+- [ ] OpenPose
+- [ ] AlphaPose
+- [ ] Integral Human Pose Regression
+- [ ] DeepPose
+- [ ] DensePose
+- [ ] TransPose
+
+
+
 ## Table of Contents
 - [Resnet](#resnet)
 - [ViT](#vit)
