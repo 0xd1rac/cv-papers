@@ -89,6 +89,10 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] MoViNets: Mobile Video Networks for Efficient Video Recognition
 - [ ] PoseC3D: Video Action Recognition with Pose Estimation
 
+## 3D VIsion
+- [ ] PointNet
+- [ ] PointNet++
+
 
 ## Table of Contents
 - [Resnet](#resnet)
