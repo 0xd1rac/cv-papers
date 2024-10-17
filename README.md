@@ -18,6 +18,23 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] ResNeXt
 - [ ] ConvNeXt
 
+## Architecture (ViT)
+- [ ] ViT
+- [ ] DETR
+- [ ] Swin Transformer
+- [ ] ViViT
+- [ ] T2T-ViT
+- [ ] DeiT
+- [ ] CaiT
+- [ ] PVT
+- [ ] TokenLearner
+- [ ] PiT
+- [ ] Twins
+- [ ] CrossViT
+- [ ] RegionViT
+- [ ] HaloNet
+- [ ] ConvMixer
+
 ## Object Detection
 - [ ] R-CNN
 - [ ] Fast R-CNN
@@ -37,7 +54,6 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] CornerNet
 - [ ] DCN
 - [ ] SpineNet
-- [ ] DETR
 - [ ] CenterNet
 - [ ] Dynamic R-CNN
 
