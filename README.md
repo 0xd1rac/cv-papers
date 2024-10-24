@@ -34,6 +34,12 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] RegionViT
 - [ ] HaloNet
 - [ ] ConvMixer
+- [ ] Dino
+- [ ] MobileViT
+- [ ] RegionViT
+- [ ] LeViT
+- [ ] PiT
+- [ ] Cross ViT
 
 ## Object Detection
 - [ ] R-CNN
