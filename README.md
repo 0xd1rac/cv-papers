@@ -3,28 +3,33 @@ This is my feeble attempt at reading and implementing various computer vision pa
 
 # To Dos
 ## Architecture (CNN) 
-- [ ] AlexNet
-- [ ] VGGNet
-- [ ] ResNet
+- [x] AlexNet
+- [x] VGGNet
+- [x] ResNet
+- [ ] ResNetv2
+- [ ] Wide ResNet
+- [ ] ResNeXt
+- [ ] ResNeSt
 - [ ] Inception
 - [ ] DenseNet
-- [ ] MobileNet
+- [ ] MobileNetV1
+- [ ] MobileNetV2
+- [ ] MobileNetV3
 - [ ] SqueezeNet
 - [ ] EfficientNet
 - [ ] NASNet
 - [ ] XCeption
-- [ ] WideResNet
 - [ ] ShuffleNet
-- [ ] ResNeXt
 - [ ] ConvNeXt
 
 ## Architecture (ViT)
-- [ ] ViT
+- [x] ViT
 - [ ] DETR
 - [ ] Swin Transformer
 - [ ] ViViT
 - [ ] T2T-ViT
 - [ ] DeiT
+- [ ] CvT
 - [ ] CaiT
 - [ ] PVT
 - [ ] TokenLearner
