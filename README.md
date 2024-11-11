@@ -9,7 +9,6 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] ResNetv2
 - [ ] Wide ResNet
 - [ ] ResNeXt
-- [ ] ResNeSt
 - [ ] Inception
 - [ ] DenseNet
 - [ ] MobileNetV1
