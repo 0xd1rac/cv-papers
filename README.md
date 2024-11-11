@@ -7,19 +7,12 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [x] VGGNet
 - [x] ResNet
 - [ ] ResNetv2
-- [ ] Wide ResNet
-- [ ] ResNeXt
 - [ ] Inception
 - [ ] DenseNet
 - [ ] MobileNetV1
 - [ ] MobileNetV2
-- [ ] MobileNetV3
 - [ ] SqueezeNet
 - [ ] EfficientNet
-- [ ] NASNet
-- [ ] XCeption
-- [ ] ShuffleNet
-- [ ] ConvNeXt
 
 ## Architecture (ViT)
 - [x] ViT
