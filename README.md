@@ -26,34 +26,16 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] DETR
 - [ ] Swin Transformer
 - [ ] ViViT
-- [ ] T2T-ViT
-- [ ] DeiT
-- [ ] CvT
 - [ ] CaiT
 - [ ] PVT
-- [ ] TokenLearner
-- [ ] PiT
-- [ ] Twins
 - [ ] CrossViT
 - [ ] RegionViT
-- [ ] HaloNet
 - [ ] ConvMixer
 - [ ] Dino
-- [ ] MobileViT
-- [ ] RegionViT
-- [ ] LeViT
-- [ ] PiT
-- [ ] Cross ViT
 
 ## Object Detection
-- [ ] R-CNN
-- [ ] Fast R-CNN
-- [ ] Faster R-CNN
-- [ ] Mask R-CNN
-- [ ] YOLOv1
 - [ ] YOLOv2
 - [ ] YOLOv3
-- [ ] YOLOv4
 - [ ] YOLOv5
 - [ ] YOLOv7
 - [ ] YOLOv8
@@ -61,29 +43,19 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] FPN
 - [ ] RetinaNet
 - [ ] EfficientDet
-- [ ] CornerNet
 - [ ] DCN
-- [ ] SpineNet
-- [ ] CenterNet
-- [ ] Dynamic R-CNN
-
+      
 ## Segmentation
 - [ ] SAM
 - [ ] SAM 2
 - [ ] SEEM
 - [ ] Mask2Former
 - [ ] CLIPSeg
-- [ ] OmniSeg
 - [ ] Vision Transformers for Dense Prediction
 - [ ] SOLOv2
 - [ ] U-Net
 - [ ] U-Net++
-- [ ] DeepLab
-- [ ] PSPNet
-- [ ] RefineNet
 - [ ] SegNet
-- [ ] Point-level Objectness for One-click Segmentation
-- [ ] HRNet
 
 ## Pose Estimation
 - [ ] Convolutional Pose Machines
@@ -108,12 +80,6 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] R(2+1)D: A Better Baseline for Video Understanding
 - [ ] Attention Is All You Need for Action Recognition
 - [ ] Action Recognition Using Visual Attention
-- [ ] LRCN: Long-term Recurrent Convolutional Networks for Visual Recognition and Description
-- [ ] Temporal Relational Reasoning in Videos
-- [ ] Video Action Transformer Network
-- [ ] TimeSformer: Is Space-Time Attention All You Need for Video Understanding?
-- [ ] MoViNets: Mobile Video Networks for Efficient Video Recognition
-- [ ] PoseC3D: Video Action Recognition with Pose Estimation
 
 ## 3D VIsion
 - [ ] PointNet
