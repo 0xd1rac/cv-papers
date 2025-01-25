@@ -9,9 +9,9 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] ResNetv2
 - [ ] Inception
 - [ ] DenseNet
-- [ ] MobileNetV1
-- [ ] MobileNetV2
-- [ ] MobileNetV3
+- [ ] MobileNetv1
+- [ ] MobileNetv2
+- [ ] MobileNetv3
 - [ ] SqueezeNet
 - [ ] EfficientNet
 - [ ] EfficientNetV2
