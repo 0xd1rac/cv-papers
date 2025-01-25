@@ -11,8 +11,17 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] DenseNet
 - [ ] MobileNetV1
 - [ ] MobileNetV2
+- [ ] MobileNetV3
 - [ ] SqueezeNet
 - [ ] EfficientNet
+- [ ] EfficientNetV2
+- [ ] ResNeXt
+- [ ] ShuffetNet
+- [ ] Xception
+- [ ] GhostNet
+- [ ] SE-Net (Squeeze-and-Excitation Networks)
+- [ ] WideResNet
+
 
 ## Architecture (ViT)
 - [x] ViT
