@@ -28,7 +28,6 @@ This is my feeble attempt at reading and implementing various computer vision pa
 
 ## Architecture (ViT)
 - [x] ViT
-- [ ] DETR
 - [ ] Swin Transformer
 - [ ] ViViT
 - [ ] CaiT
@@ -37,11 +36,19 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] RegionViT
 - [ ] ConvMixer
 - [ ] Dino
+- [ ] DeiT
+- [ ] CvT
+- [ ] MaxViT
+- [ ] ViT-G & CoAtNet
+- [ ] InternImage 
 
 ## Object Detection
+- [ ] YOLOv1
 - [ ] YOLOv2
 - [ ] YOLOv3
+- [ ] YOLOv4
 - [ ] YOLOv5
+- [ ] YOLOv6
 - [ ] YOLOv7
 - [ ] YOLOv8
 - [ ] SSD
@@ -49,6 +56,11 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] RetinaNet
 - [ ] EfficientDet
 - [ ] DCN
+- [ ] R-CNN
+- [ ] Fast R-CNN
+- [ ] Faster R-CNN
+- [ ] DETR
+- [ ] Deformable DETR 
       
 ## Segmentation
 - [ ] SAM
