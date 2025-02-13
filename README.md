@@ -7,6 +7,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [x] VGGNet
 - [x] ResNet
 - [ ] ResNetv2
+- [ ] ResNeXt
 - [ ] Inception
 - [ ] DenseNet
 - [ ] MobileNetv1
@@ -21,6 +22,8 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] GhostNet
 - [ ] SE-Net (Squeeze-and-Excitation Networks)
 - [ ] WideResNet
+- [ ] Factorized Networks
+- [ ] Deep Frid ConvNets
 
 
 ## Architecture (ViT)
