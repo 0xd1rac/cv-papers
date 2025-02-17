@@ -10,7 +10,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] ResNeXt
 - [ ] Inception
 - [ ] DenseNet
-- [ ] MobileNetv1
+- [x] MobileNetv1
 - [ ] MobileNetv2
 - [ ] MobileNetv3
 - [ ] SqueezeNet
@@ -28,6 +28,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 
 ## Architecture (ViT)
 - [x] ViT
+- [ ] Maskekd Autoencoder Vision Transformer
 - [ ] Swin Transformer
 - [ ] ViViT
 - [ ] CaiT
@@ -40,7 +41,7 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [ ] CvT
 - [ ] MaxViT
 - [ ] ViT-G & CoAtNet
-- [ ] InternImage 
+- [ ] InternImage
 
 ## Object Detection
 - [ ] YOLOv1
