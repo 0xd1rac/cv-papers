@@ -6,103 +6,47 @@ This is my feeble attempt at reading and implementing various computer vision pa
 - [x] AlexNet
 - [x] VGGNet
 - [x] ResNet
-- [ ] ResNetv2
-- [ ] ResNeXt
-- [ ] Inception
 - [ ] DenseNet
 - [x] MobileNetv1
 - [ ] MobileNetv2
-- [ ] MobileNetv3
-- [ ] SqueezeNet
 - [ ] EfficientNet
-- [ ] EfficientNetV2
-- [ ] ResNeXt
-- [ ] ShuffetNet
-- [ ] Xception
-- [ ] GhostNet
 - [ ] SE-Net (Squeeze-and-Excitation Networks)
-- [ ] WideResNet
-- [ ] Factorized Networks
-- [ ] Deep Frid ConvNets
-
-
+      
 ## Architecture (ViT)
 - [x] ViT
 - [ ] Maskekd Autoencoder Vision Transformer
 - [ ] Swin Transformer
-- [ ] ViViT
-- [ ] CaiT
-- [ ] PVT
-- [ ] CrossViT
-- [ ] RegionViT
-- [ ] ConvMixer
-- [ ] Dino
-- [ ] DeiT
-- [ ] CvT
-- [ ] MaxViT
-- [ ] ViT-G & CoAtNet
-- [ ] InternImage
+- [ ] ConvViT
+- [ ] Auto-Former
+- [ ] MLP-Mixer
 
 ## Object Detection
-- [ ] YOLOv1
-- [ ] YOLOv2
 - [ ] YOLOv3
-- [ ] YOLOv4
-- [ ] YOLOv5
-- [ ] YOLOv6
-- [ ] YOLOv7
-- [ ] YOLOv8
 - [ ] SSD
 - [ ] FPN
-- [ ] RetinaNet
-- [ ] EfficientDet
-- [ ] DCN
-- [ ] R-CNN
-- [ ] Fast R-CNN
 - [ ] Faster R-CNN
 - [ ] DETR
-- [ ] Deformable DETR 
       
 ## Segmentation
 - [ ] SAM
 - [ ] SAM 2
-- [ ] SEEM
-- [ ] Mask2Former
-- [ ] CLIPSeg
-- [ ] Vision Transformers for Dense Prediction
-- [ ] SOLOv2
 - [ ] U-Net
 - [ ] U-Net++
 - [ ] SegNet
 
 ## Pose Estimation
-- [ ] Convolutional Pose Machines
-- [ ] DeepCut
 - [ ] Stacked Hourglass Networks
-- [ ] PoseNet
 - [ ] OpenPose
 - [ ] AlphaPose
-- [ ] Integral Human Pose Regression
 - [ ] DeepPose
 - [ ] DensePose
-- [ ] TransPose
 
 ## Action Recognition
 - [ ] ViViT: A Video Vision Transformer
 - [ ] Two-Stream Convolutional Networks for Action Recognition in Videos
 - [ ] C3D: Learning Spatiotemporal Features with 3D Convolutional Networks
 - [ ] I3D: Quo Vadis, Action Recognition? A New Model and the Kinetics
-- [ ] TSN: Temporal Segment Networks for Action Recognition in Videos
 - [ ] SlowFast Networks for Video Recognition
-- [ ] Non-local Neural Networks
-- [ ] R(2+1)D: A Better Baseline for Video Understanding
-- [ ] Attention Is All You Need for Action Recognition
-- [ ] Action Recognition Using Visual Attention
-
-## 3D VIsion
-- [ ] PointNet
-- [ ] PointNet++
-
 
 ## Table of Contents
 - [Resnet](#resnet)
