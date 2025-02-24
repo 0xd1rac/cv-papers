@@ -1,15 +1,24 @@
 import torch
 import torch.nn as nn
 import numpy as np 
+from typing import Tuple
 import torchvision.transforms as transforms
 from timm.models.vision_transformer import VisionTransformer
+from torch import Tensor
 
-def extract_patches(x, patch_size):
+
+def extract_patches(x: Tensor, patch_size: int) -> Tensor:
     """
     Extracts flattened patches from the original image (ground truth for reconstruction).
-    Returns a tensor of shape (B, num_patches, patch_size * patch_size * 3).
+
+    Args:
+        x (Tensor): Input image tensor of shape (B, C, H, W), where H = W.
+        patch_size (int): The size of each patch (assumed to be square).
+
+    Returns:
+        Tensor: A tensor of shape (B, num_patches, patch_dim), where patch_dim is equal to C * patch_size * patch_size.
     """
-    batch_size, channels, height, width = x.shape
+    batch_size, channels, _, _ = x.shape
     patches = x.unfold(2, patch_size, patch_size).unfold(3, patch_size, patch_size)
     patches = patches.permute(0, 2, 3, 1, 4, 5).reshape(
         batch_size, -1, channels * patch_size * patch_size
@@ -18,7 +27,12 @@ def extract_patches(x, patch_size):
 
 class PatchEmbedding(nn.Module):
     """ Splits the image into patches and embeds them with a linear projection. """
-    def __init__(self, img_size=224, patch_size=16, in_channels=3, embed_dim=768):
+    def __init__(self, 
+                 img_size:int=224, 
+                 patch_size:int=16, 
+                 in_channels:int=3, 
+                 embed_dim:int=768
+                 ):
         super().__init__()
         self.patch_size = patch_size
         self.img_size = img_size
@@ -28,7 +42,7 @@ class PatchEmbedding(nn.Module):
         self.proj = nn.Linear(in_channels * patch_size * patch_size, embed_dim)
         self.pos_embed = nn.Parameter(torch.rand(1, self.num_patches, embed_dim))
     
-    def forward(self, x):
+    def forward(self, x:torch.Tensor) -> torch.Tensor:
         batch_size, num_channels, height, width = x.shape
         assert height == width == self.img_size, f"Image size must match the model, ({self.img_size}x{self.img_size})"
 
@@ -39,8 +53,20 @@ class PatchEmbedding(nn.Module):
         x = self.proj(x) + self.pos_embed
         return x 
     
-def mask_patches(patch_embeddings, mask_ratio=0.75):
-    """Randomly masks patches and returns visible patches and mask indices."""
+def mask_patches(patch_embeddings: Tensor, mask_ratio: float = 0.75) -> Tuple[Tensor, Tensor, Tensor]:
+    """
+    Randomly masks patches and returns visible patches and mask indices.
+
+    Args:
+        patch_embeddings (torch.Tensor): Input tensor of shape (B, num_patches, embed_dim).
+        mask_ratio (float, optional): Fraction of patches to mask. Default is 0.75.
+
+    Returns:
+        Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+            - visible_patches (torch.Tensor): The visible patches after masking, of shape (B, num_visible, embed_dim).
+            - visible_indices (torch.Tensor): The indices of the visible patches, of shape (B, num_visible).
+            - masked_indices (torch.Tensor): The indices of the masked patches, of shape (B, num_masked).
+    """
     batch_size, num_patches, embed_dim = patch_embeddings.shape
     num_masked = int(mask_ratio * num_patches)
 
@@ -62,75 +88,149 @@ def mask_patches(patch_embeddings, mask_ratio=0.75):
 
 
 class MAEEncoder(nn.Module):
-    """Encoder for Masked Autoencoder (MAE). Uses a ViT."""
-    def __init__(self, img_size=224, patch_size=16, embed_dim=768, depth=12, num_heads=12):
+    """
+    Encoder for Masked Autoencoder (MAE) using a Vision Transformer (ViT).
+
+    This module performs the following steps:
+      1. Extracts patches from the input image via a PatchEmbedding module.
+      2. Randomly masks a fraction of these patches.
+      3. Encodes the visible patches using a ViT (bypassing the internal patch embedding).
+    """
+    def __init__(self, img_size: int = 224, patch_size: int = 16, embed_dim: int = 768, 
+                 depth: int = 12, num_heads: int = 12) -> None:
+        """
+        Args:
+            img_size (int): The height/width of the input image (assumed square).
+            patch_size (int): The size of each patch (assumed square).
+            embed_dim (int): The dimension of the patch embeddings.
+            depth (int): Number of transformer blocks.
+            num_heads (int): Number of attention heads in each transformer block.
+        """
         super().__init__()
         self.patch_embed = PatchEmbedding(img_size=img_size, patch_size=patch_size, 
-                                          in_channels=3, embed_dim=embed_dim
-                                        )
+                                          in_channels=3, embed_dim=embed_dim)
         
-        # Initialize a ViT without a classification head (num_classes=0)
+        # Initialize a Vision Transformer without a classification head (num_classes=0)
         self.encoder = VisionTransformer(
             img_size=img_size, patch_size=patch_size, embed_dim=embed_dim,
             depth=depth, num_heads=num_heads, num_classes=0, mlp_ratio=4.0, qkv_bias=True
         )
 
-    def forward(self, x, mask_ratio=0.75):
+    def forward(self, x: Tensor, mask_ratio: float = 0.75) -> Tuple[Tensor, Tensor, Tensor]:
         """
-        x: (B, 3, img_size, img_size)
-        patch_embeddings (B, num_patches, embed_dim)
-        
+        Forward pass for the MAE encoder.
+
+        Args:
+            x (Tensor): Input image tensor of shape (B, 3, img_size, img_size).
+            mask_ratio (float, optional): Fraction of patches to mask. Default is 0.75.
+
+        Returns:
+            Tuple[Tensor, Tensor, Tensor]:
+                - encoded_features (Tensor): Encoded features of the visible patches with shape (B, num_visible, embed_dim).
+                - visible_indices (Tensor): Indices of the visible patches with shape (B, num_visible).
+                - masked_indices (Tensor): Indices of the masked patches with shape (B, num_masked).
         """
-        patch_embeddings = self.patch_embed(x)  # (B, num_patches, embed_dim)
+        patch_embeddings: Tensor = self.patch_embed(x)  # Shape: (B, num_patches, embed_dim)
         
         visible_patches, visible_indices, masked_indices = mask_patches(patch_embeddings, mask_ratio)
 
-        encoded_features = self.encoder.blocks(visible_patches)
+        # Directly process the visible patches through the transformer blocks and normalization
+        encoded_features: Tensor = self.encoder.blocks(visible_patches)
         encoded_features = self.encoder.norm(encoded_features)
 
         return encoded_features, visible_indices, masked_indices
 
 class MAEDecoder(nn.Module):
-    """MAE Decoder that reconstructs masked image patches"""
-    def __init__(self, embed_dim=768, decoder_embed_dim=512, depth=8, num_heads=8, patch_size=16, img_size=224):
+    """
+    MAE Decoder that reconstructs masked image patches.
+
+    This module projects the encoder output into the decoder embedding dimension,
+    creates a full token sequence (populated with encoded visible tokens and learnable
+    mask tokens), and then processes these tokens with a Vision Transformer to
+    reconstruct the original patches.
+    
+    """
+    def __init__(self, 
+                 embed_dim: int = 768, 
+                 decoder_embed_dim: int = 512, 
+                 depth: int = 8, 
+                 num_heads: int = 8, 
+                 patch_size: int = 16, 
+                 img_size: int = 224) -> None:
+        """
+        Args:
+            embed_dim (int): Dimension of the encoder output embeddings.
+            decoder_embed_dim (int): Dimension used in the decoder.
+            depth (int): Number of transformer blocks in the decoder.
+            num_heads (int): Number of attention heads in the decoder.
+            patch_size (int): Size of each image patch (assumed square).
+            img_size (int): Height/width of the input image (assumed square).
+        """
         super().__init__()
         self.embed_dim = embed_dim
         self.decoder_embed_dim = decoder_embed_dim
         self.patch_size = patch_size
         self.img_size = img_size
+
+        # Project encoder output to decoder embedding dimension
         self.proj = nn.Linear(embed_dim, decoder_embed_dim)
 
         # Learnable mask token 
         self.mask_token = nn.Parameter(torch.zeros(1, 1, decoder_embed_dim))
 
+        # Initialize a Vision Transformer for decoding (without a classification head)
         self.decoder = VisionTransformer(
             img_size=img_size, patch_size=patch_size, embed_dim=decoder_embed_dim,
             depth=depth, num_heads=num_heads, num_classes=0, mlp_ratio=4.0, qkv_bias=True
         )
+        # Head to reconstruct flattened patch pixels (patch_size * patch_size * 3)
         self.reconstruction_head = nn.Linear(decoder_embed_dim, patch_size * patch_size * 3)
 
-    def forward(self, encoded_features, visible_indices, masked_indices):
+    def forward(self, 
+                encoded_features: Tensor, 
+                visible_indices: Tensor, 
+                masked_indices: Tensor) -> Tensor:
+        """
+        Forward pass of the MAE decoder.
+
+        Args:
+            encoded_features (Tensor): Encoder output of shape (B, num_visible, embed_dim).
+            visible_indices (Tensor): Indices of visible patches, shape (B, num_visible).
+            masked_indices (Tensor): Indices of masked patches, shape (B, num_masked).
+
+        Returns:
+            Tensor: Reconstructed patches of shape (B, num_total_patches, patch_size*patch_size*3).
+        """
         batch_size, num_visible_patches, _ = encoded_features.shape
         num_total_patches = (self.img_size // self.patch_size) ** 2
 
-        full_tokens = torch.zeros(batch_size, num_total_patches, self.decoder_embed_dim, device=encoded_features.device)
+        # Create a full token tensor for all patches (initialized to zeros)
+        full_tokens: Tensor = torch.zeros(batch_size, num_total_patches, self.decoder_embed_dim, 
+                                            device=encoded_features.device)
+        # Project visible tokens to the decoder embedding dimension
         encoded_features = self.proj(encoded_features)
 
+        # Scatter the visible tokens into their corresponding positions
         full_tokens.scatter_(
-            1, visible_indices.unsqueeze(-1).expand(-1, -1, self.decoder_embed_dim), encoded_features
+            1,
+            visible_indices.unsqueeze(-1).expand(-1, -1, self.decoder_embed_dim),
+            encoded_features
         )
 
-        mask_tokens = self.mask_token.expand(batch_size, masked_indices.shape[1], -1)
+        # Expand the mask token and scatter into masked positions
+        mask_tokens: Tensor = self.mask_token.expand(batch_size, masked_indices.shape[1], -1)
         full_tokens.scatter_(
             1, 
             masked_indices.unsqueeze(-1).expand(-1, -1, self.decoder_embed_dim), 
             mask_tokens
         )
 
-        decoder_features = self.decoder.blocks(full_tokens)
+        # Process the full token sequence with the decoder's transformer blocks and normalization
+        decoder_features: Tensor = self.decoder.blocks(full_tokens)
         decoder_features = self.decoder.norm(decoder_features) 
 
-        reconstructed_patches = self.reconstruction_head(decoder_features)
+        # Reconstruct the patches from decoder features
+        reconstructed_patches: Tensor = self.reconstruction_head(decoder_features)
         return reconstructed_patches
 
 class MaskedAutoEncoder(nn.Module):
