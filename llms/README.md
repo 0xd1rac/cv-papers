@@ -1,5 +1,4 @@
-# NLP-Papers
-This is my feeble attempt at reading and implementing various NLP papers. Mostly for educational purposes so.
+# LLMs
 
 ## Table of Contents
 - [Transformer](#transformer)
@@ -7,6 +6,7 @@ This is my feeble attempt at reading and implementing various NLP papers. Mostly
 - [GPTv1](#gptv1)
 - [GPTv2](#gptv2)
 - [GPTv3](#gptv3)
+- [LoRA](#lora)
 ## Transformer (Attention is All You Need)
 
 This implementation of the Transformer model follows the original architecture introduced by [Vaswani et al. (2017)](https://arxiv.org/abs/1706.03762), consisting of both **Encoder** and **Decoder** Blocks. Each encoder block contains a **Multi-Head Self-Attention** mechanism followed by a **Feed-Forward Neural Network**, with residual connections and layer normalization applied at each stage. The decoder blocks additionally include a **Cross-Attention** mechanism, which allows the model to attend to the encoder’s output while generating the target sequence. The model uses token and positional embeddings to represent input sequences, and causal masking is applied in the decoder to ensure autoregressive generation for sequence-to-sequence tasks such as machine translation.
@@ -201,3 +201,5 @@ model = GPTv3(vocab_size=VOCAB_SIZE,
 logits = model(input_ids)
 print(logits.shape)
   ```
+
+## LoRA
